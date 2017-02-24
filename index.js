@@ -6,6 +6,7 @@ process.env.TWILIO_API_KEY
 process.env.TWILIO_API_SECRET
 process.env.TWILIO_CONFIGURATION_SID
 */
+var fs = require("fs");
 require('dotenv').load();
 var http = require('http');
 var https = require('https');
