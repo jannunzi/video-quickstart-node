@@ -8,6 +8,8 @@ process.env.TWILIO_CONFIGURATION_SID
 */
 require('dotenv').load();
 var http = require('http');
+var https = require('https');
+
 var path = require('path');
 var AccessToken = require('twilio').AccessToken;
 var VideoGrant = AccessToken.VideoGrant;
@@ -49,9 +51,19 @@ app.get('/token', function(request, response) {
     });
 });
 
+var credentials = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+};
+
 // Create http server and run it
 var server = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
 var port = process.env.PORT || 3000;
-server.listen(port, function() {
+// server.listen(port, function() {
+//     console.log('Express server running on *:' + port);
+// });
+httpsServer.listen(port, function() {
     console.log('Express server running on *:' + port);
 });
