@@ -58,13 +58,13 @@ var credentials = {
 };
 
 // Create http server and run it
-var server = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
-
 var port = process.env.PORT || 3000;
-// server.listen(port, function() {
-//     console.log('Express server running on *:' + port);
-// });
-httpsServer.listen(port, function() {
+
+var server = http.createServer(app);
+server.listen(port, function() {
     console.log('Express server running on *:' + port);
 });
+// var httpsServer = https.createServer(credentials, app);
+// httpsServer.listen(port, function() {
+//     console.log('Express server running on *:' + port);
+// });
